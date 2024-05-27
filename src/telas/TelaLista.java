@@ -20,7 +20,7 @@ public class TelaLista {
         tabelaLivros = new JTable(tableModel);
         tabelaLivros.setFillsViewportHeight(true);
 
-        tela.setSize(600, 600);
+        tela.setSize(600, 600); // Ajustar tamanho da tela
         painel.setLayout(null);
 
         JScrollPane scrollpane = new JScrollPane(tabelaLivros);
@@ -38,10 +38,8 @@ public class TelaLista {
                     String autor = (String) tableModel.getValueAt(selectedRow, 1);
                     Livro livro = buscarLivro(titulo, autor);
                     if (livro != null) {
-                        String detalhes = "Título: " + livro.getTitulo() + "\n" +
-                                          "Autor: " + livro.getAutor() + "\n" +
-                                          "Sinopse: " + livro.getSinopse();
-                        JOptionPane.showMessageDialog(tela, detalhes, "Detalhes do Livro", JOptionPane.INFORMATION_MESSAGE);
+                        TelaDescricao telaDescricao = new TelaDescricao(livro);
+                        telaDescricao.setVisible(true);
                     }
                 } else {
                     JOptionPane.showMessageDialog(tela, "Selecione um livro para ver os detalhes.", "Nenhum Livro Selecionado", JOptionPane.WARNING_MESSAGE);
@@ -49,6 +47,17 @@ public class TelaLista {
             }
         });
         painel.add(btnDetalhes);
+
+        JButton btnRetornar = new JButton("Retornar");
+        btnRetornar.setBounds(370, 470, 100, 30);
+        btnRetornar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                tela.dispose(); // Fecha a tela atual
+                Telacadastrolivro telaCadastro = new Telacadastrolivro();
+                telaCadastro.getFrame().setVisible(true); // Abre a tela de cadastro
+            }
+        });
+        painel.add(btnRetornar);
 
         tela.getContentPane().add(painel);
         tela.setLocationRelativeTo(null); // Centralizar a tela
@@ -75,5 +84,3 @@ public class TelaLista {
         return null;
     }
 }
-
-

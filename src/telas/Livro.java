@@ -1,7 +1,6 @@
 package telas;
 
 public class Livro {
-	
     private String titulo;
     private String autor;
     private String sinopse;
@@ -16,11 +15,23 @@ public class Livro {
         return titulo;
     }
 
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
     public String getAutor() {
         return autor;
     }
 
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
     public String getSinopse() {
         return sinopse;
+    }
+
+    public void setSinopse(String sinopse) {
+        this.sinopse = sinopse;
     }
 }

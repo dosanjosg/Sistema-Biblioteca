@@ -1,6 +1,8 @@
 package telas;
 
 import java.awt.EventQueue;
+import java.awt.Window;
+
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -121,6 +123,11 @@ public class Telacadastrolivro {
         }
         return sb.toString();
     }
+
+	public Window getFrame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
 
