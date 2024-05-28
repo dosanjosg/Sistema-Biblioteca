@@ -1,8 +1,6 @@
 package telas;
 
 import java.awt.EventQueue;
-import java.awt.Window;
-
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -34,7 +32,7 @@ public class Telacadastrolivro {
 
     public Telacadastrolivro() {
         cadastro = new CadastroDeLivros();
-        telaLista = new TelaLista();
+        telaLista = new TelaLista(this);
         initialize();
     }
 
@@ -44,7 +42,7 @@ public class Telacadastrolivro {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(null);
         frame.setLocationRelativeTo(null); // Centralizar a tela
-
+        
         JLabel lblTituloLivro = new JLabel("Título do Livro:");
         lblTituloLivro.setBounds(75, 34, 130, 16);
         frame.getContentPane().add(lblTituloLivro);
@@ -100,6 +98,7 @@ public class Telacadastrolivro {
             public void actionPerformed(ActionEvent e) {
                 telaLista.atualizarLista(cadastro.getLivros());
                 telaLista.mostrar();
+                frame.setVisible(false); // Ocultar a tela de cadastro
             }
         });
         btnMostrarLista.setBounds(380, 500, 115, 30); // Ajustar posição para mais inferior
@@ -124,10 +123,11 @@ public class Telacadastrolivro {
         return sb.toString();
     }
 
-	public Window getFrame() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public CadastroDeLivros getCadastro() {
+        return cadastro;
+    }
 }
-
-

@@ -12,8 +12,10 @@ public class TelaLista {
     private JPanel painel;
     private DefaultTableModel tableModel;
     private JTable tabelaLivros;
+    private Telacadastrolivro telaCadastro;
 
-    public TelaLista() {
+    public TelaLista(Telacadastrolivro telaCadastro) {
+        this.telaCadastro = telaCadastro;
         tela = new JFrame("Lista de Livros");
         painel = new JPanel();
         tableModel = new DefaultTableModel(new Object[]{"Livro", "Nome do Autor"}, 0);
@@ -53,8 +55,7 @@ public class TelaLista {
         btnRetornar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 tela.dispose(); // Fecha a tela atual
-                Telacadastrolivro telaCadastro = new Telacadastrolivro();
-                telaCadastro.getFrame().setVisible(true); // Abre a tela de cadastro
+                telaCadastro.getFrame().setVisible(true); // Voltar para a tela de cadastro
             }
         });
         painel.add(btnRetornar);
@@ -76,7 +77,7 @@ public class TelaLista {
     }
 
     private Livro buscarLivro(String titulo, String autor) {
-        for (Livro livro : CadastroDeLivros.livros) {
+        for (Livro livro : telaCadastro.getCadastro().getLivros()) {
             if (livro.getTitulo().equals(titulo) && livro.getAutor().equals(autor)) {
                 return livro;
             }
